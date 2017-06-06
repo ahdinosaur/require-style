@@ -1,5 +1,5 @@
-const requireStyle = require('./')
+const requireStyle = require('require-style')
 
-console.log('require-style', requireStyle)
+const css = requireStyle('font-awesome')
 
-console.log('font-awesome', requireStyle('font-awesome'))
+console.log('font-awesome', css)

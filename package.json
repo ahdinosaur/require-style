@@ -4,18 +4,14 @@
   "description": "require modules that target css in electron or the browser",
   "main": "index.js",
   "scripts": {
-    "start": "node-dev example",
-    "test:deps": "dependency-check . && dependency-check . --extra --no-dev -i es2040",
+    "start": "node example",
+    "transform": "browserify -t ./transform example",
+    "test:deps": "dependency-check . transform && dependency-check . transform --extra --no-dev",
     "test:lint": "standard",
     "test:node": "NODE_ENV=test run-default tape test/*.js --",
     "test:coverage": "NODE_ENV=test nyc npm run test:node",
     "test:coverage:report": "nyc report --reporter=lcov npm run test:node",
     "test": "npm-run-all -s test:node test:lint test:deps"
-  },
-  "browserify": {
-    "transform": [
-      "es2040"
-    ]
   },
   "repository": {
     "type": "git",
@@ -29,9 +25,9 @@
   },
   "homepage": "https://github.com/ahdinosaur/require-style#readme",
   "devDependencies": {
+    "browserify": "^14.4.0",
     "dependency-check": "^2.7.0",
     "font-awesome": "^4.7.0",
-    "node-dev": "^3.1.3",
     "npm-run-all": "^4.0.1",
     "nyc": "^10.1.2",
     "run-default": "^1.0.0",
@@ -40,7 +36,14 @@
   },
   "dependencies": {
     "css-url-regex": "^1.1.0",
-    "es2040": "^1.2.3",
-    "style-resolve": "^1.0.1"
+    "from2-string": "^1.1.0",
+    "pump": "^1.0.2",
+    "quote-stream": "^1.0.2",
+    "readable-stream": "^2.2.10",
+    "replacestream": "^4.0.2",
+    "resolve": "^1.3.3",
+    "static-module": "^1.3.2",
+    "style-resolve": "^1.0.1",
+    "urify": "^2.1.0"
   }
 }

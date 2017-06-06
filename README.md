@@ -2,10 +2,20 @@
 
 require modules that target css in electron or the browser
 
-_only tested to work with `font-awesome`_
+_only tested to work with `font-awesome`, made for [`patchbay`](https://github.com/ssbc/patchbay)_
 
 ```shell
 npm install --save require-style
+```
+
+## example
+
+```js
+const requireStyle = require('require-style')
+
+const css = requireStyle('font-awesome')
+
+console.log('font-awesome', css)
 ```
 
 ## usage
@@ -14,9 +24,29 @@ npm install --save require-style
 
 ### `css = requireStyle(path)`
 
+- looks up path using [`style-resolve`](https://github.com/stackcss/style-resolve)
+- reads associated file
+- converts any `url(...)` relative file paths to absolute file paths
+
 ### browserify transform
 
-TODO
+includes a browserify transform which allows this module to work as expected in the browser, including conversion of any `url(...)` file paths to data URIs using [`urify`](https://github.com/mattdesl/urify)
+
+using the `browserify` cli:
+
+```
+browserify entry.js -t require-style/transform
+```
+
+using your `package.json`:
+
+```
+"browserify": {
+  "transform": [
+    "require-style/transform"
+  ]
+}
+```
 
 ## license
 

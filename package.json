@@ -1,6 +1,6 @@
 {
   "name": "require-style",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "require modules that target css in electron or the browser",
   "main": "index.js",
   "scripts": {

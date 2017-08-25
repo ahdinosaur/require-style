@@ -13,11 +13,17 @@ module.exports = requireStyle
 function requireStyle (name) {
   const path = styleResolve.sync(name)
   var css = readFileSync(path, 'utf8')
+  
+  const isWindows = /^win/.test(process.platform)
+  
   // resolve any relative paths to absolute paths
   css = css.replace(cssUrlRegex, (_, url) => {
     url = url
       .replace(quoteRegex, '')
       .replace(dotSlashRegex, match => join(dirname(path), match))
+    
+    if (isWindows) url = url.replace(/\\/g, '/')
+
     return `url(${url})`
   })
   return css

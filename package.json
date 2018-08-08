@@ -46,6 +46,6 @@
     "slash": "^1.0.0",
     "static-module": "^3.0.0",
     "style-resolve": "^1.0.1",
-    "urify": "^2.1.0"
+    "urify": "^2.1.1"
   }
 }

@@ -1,4 +1,3 @@
-const { readFile } = require('fs')
 const Url = require('url')
 const staticModule = require('static-module')
 const path = require('path')
@@ -29,8 +28,8 @@ function requireStyleTransform (file, options) {
   var sm = staticModule(
     { 'require-style': styleTransformed },
     { vars: vars, varModules: { path } }
-  );
-  return sm;
+  )
+  return sm
 
   function styleTransformed (file) {
     var css = ''

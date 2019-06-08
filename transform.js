@@ -8,10 +8,9 @@ const PassThrough = require('readable-stream/passthrough')
 const resolve = require('resolve')
 const pump = require('pump')
 const replace = require('replacestream')
-const CssUrlRegex = require('css-url-regex')
 const urify = require('urify')
 
-const cssUrlRegex = CssUrlRegex()
+const cssUrlRegex = require('./util/css-url-regex')
 
 module.exports = requireStyleTransform
 
@@ -40,7 +39,8 @@ function requireStyleTransform (file, options) {
     }
     return pump(
       fromString(css),
-      replace(cssUrlRegex, (match, url) => {
+      replace(cssUrlRegex, (match, _, url) => {
+        console.log('match', match)
         try {
           const { pathname } = Url.parse(url)
           // TODO async-ify
